@@ -1,11 +1,10 @@
 # USC Operator Lookup 
 
-A simple and efficient phone lookup for USC operators.
+A dynamic operator phonebook lookup website. I originally wrote this for USC's operator department.
+Current repo was duplicated with permission with random data for demonstration purposes.
 
-All data was pulled from the original CSC OpManual. 
-
-Written using AngularJS and ElasticSearch for fast and flexibile lookups.
-The website is hosted using nginx for quick deployment.
+Written using AngularJS and ElasticSearch for fast and flexibile lookups. 
+All services are deployed with Docker containers.  
 
 **Requirements:**
 

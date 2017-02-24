@@ -1,1 +1,41 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('o.n(\'p\',[\'$q\',\'s\',\'$a\',5($q,h,$a){1 e=h({g:$a.g()+\':r\'});1 2=5(8,t){u(!8){b $q(5(9,j){1 d=[];9(d)})}1 6=$q.k();1 4={l:{m:{4:8,v:D}}};e.2({H:\'J\',F:\'I\',w:{G:E,4:4,},}).y(5(c){1 3,7=[];3=(c.f||{}).f||[];x(1 i=0;i<3.z;i++){7.A(3[i].C)}6.9(7)},6.j);b 6.B};b{"2":2}}]);',46,46,'|var|search|hits_in|query|function|deferred|hits_out|term|resolve|location|return|result|empty|client|hits|host|elasticsearch||reject|defer|match_phrase_prefix|_all|factory|phoneControllers|searchService||9200|esFactory|num_results|if|max_expansions|body|for|then|length|push|promise|_source|25|100|type|size|index|phone|op'.split('|'),0,{}))
+phoneControllers.factory('searchService', ['$q', 'esFactory', '$location', function($q, elasticsearch, $location) {
+    var client = elasticsearch({
+        host: $location.host() + ':9200'
+    });
+    var search = function(term, num_results) {
+        if (!term) {
+            return $q(function(resolve, reject) {
+                var empty = [];
+                resolve(empty)
+            })
+        }
+        var deferred = $q.defer();
+        var query = {
+            match_phrase_prefix: {
+                _all: {
+                    query: term,
+                    max_expansions: 25
+                }
+            }
+        };
+        client.search({
+            index: 'op',
+            type: 'phone',
+            body: {
+                size: 100,
+                query: query,
+            },
+        }).then(function(result) {
+            var hits_in, hits_out = [];
+            hits_in = (result.hits || {}).hits || [];
+            for (var i = 0; i < hits_in.length; i++) {
+                hits_out.push(hits_in[i]._source)
+            }
+            deferred.resolve(hits_out)
+        }, deferred.reject);
+        return deferred.promise
+    };
+    return {
+        "search": search
+    }
+}]);
