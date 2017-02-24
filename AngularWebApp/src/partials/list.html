@@ -1,0 +1,76 @@
+<section class="mainpage">
+	<div class="search">
+		<img ng-src="images/shield.png" alt="USC Logo">
+
+		<h1>Operator Manual</h1>
+
+
+		<form ng-keyup="search()">
+			<input ng-model='query' placeholder="Search" focus-if>
+		</form>
+
+		<p><br>
+
+		<label class="formgroup">Sort by:
+			<select ng-model="order">
+				<option value="department">Department</option>
+				<option value="division">Division</option>
+				<option value="location">Location</option>
+				<option value="telephone">Phone Number</option>
+			</select>
+		</label>
+
+		<label class="formgroup">
+			Order:
+			<input type="radio" ng-model="direction" name="direction"> ↓
+			<input type="radio" ng-model="direction" name="direction" value="reverse"> ↑
+		</label>
+
+		<label class="formgroup">
+			Display:
+			<input type="radio" ng-model="display" name="display" value="table"> Table
+			<input type="radio" ng-model="display" name="display" value="list"> List
+		</label>
+
+		<label class="formgroup">Results:
+			<select ng-model="num_results">
+				<option value="10">10</option>
+				<option value="25">25</option>
+				<option value="50">50</option>
+				<option value="75">75</option>
+				<option value="100">100</option>
+			</select>
+		</label>
+		</p>
+	</div>
+	<br>
+
+	<span ng-if="display=='table'">
+		<table class="phone" ng-cloak>
+			<tr>
+				<td>DEPARTMENT</td><td>DIVISION</td><td>LOCATION</td><td>TELEPHONE</td>
+			</tr>
+			<tr ng-show="$index<num_results" ng-repeat="item in lists | orderBy : order:direction">
+				<td class="normal">{{ item.department }}</td>
+				<td class="normal">{{ item.division }}</td>
+				<td class="thin">{{ item.location }}</td>
+				<td class="thin">{{ item.telephone }}</td>
+			</tr>
+		</table>
+	</span>
+
+	<span ng-if="display=='list'" ng-cloak>
+		<ul class="phone">
+			<li class="op" ng-show="$index<num_results" ng-repeat="item in lists | orderBy: order:direction">
+				<div class="info">
+					<h2>{{item.telephone}}</h2>
+					<h1>{{item.department}}</h1>
+					<h3>{{item.division}}  {{item.location}}</h3>
+				</div>
+			</li>
+		</ul>
+	</span>
+
+	<div class="no_results" ng-hide='lists.length'>No results found</div>
+
+</section>

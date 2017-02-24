@@ -1,0 +1,49 @@
+###### Elasticsearch Commands #######
+
+Elasticsearch config
+es.config=/usr/local/Cellar/elasticsearch/xx.xx.xx/config/elasticsearch.yml
+
+Show health of cluster-
+curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
+
+Show all indexes-
+curl 'localhost:9200/_cat/indices?v'
+
+Delete an index-
+curl -XDELETE 'http://localhost:9200/INDEX_NAME/'
+
+Search
+curl 'localhost:9200/op/phone/_search?pretty' -d '{
+"query": {
+"query_string": {
+"query": "dornsife" 
+}
+}
+}'
+
+Search with max_results: 
+curl -XPOST 'http://localhost:9200/op/phone/_search?size=2032&pretty=1' -d '{"query": {"match": {"_all": "dornsife"}}}'
+
+
+curl -XGET 'localhost:9200/op/phone/_search?size=2032&pretty' -d '
+{
+"query" : {
+    "match_all" : {}
+  }
+}'
+
+
+Find document by ID
+curl 'localhost:9200/op/phone/1?pretty'
+
+
+-Make readonly
+curl -XPUT http://localhost:9200/index/_settings -d' { "index":{ "blocks":{ "read_only":true } } }'
+
+Docker Commands
+Delete All Containers (!!)
+docker rm $(docker ps -a -q)
+
+Delet all images (!!!)
+docker rmi $(docker images -q)
+

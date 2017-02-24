@@ -1,0 +1,15 @@
+# Cache files, generates by Zephir
+.temp/
+.libs/
+
+# Object files, generates by linker
+*.lo
+*.la
+*.o
+*.loT
+
+# Node/Bower Dependencies
+src/node_modules
+
+#Temp files
+escommands

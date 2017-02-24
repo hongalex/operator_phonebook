@@ -1,0 +1,17 @@
+<div ng-controller = "LoginController">
+	<section class="loginpage">
+	  <div class="login">
+	    <img ng-src="images/logo.png" alt="USC Logo">
+
+	   <!--  <h1>Login</h1> 
+	    <h1> Login. </h1> -->
+	    <h2> Please log in to access the manual. </h2> <br>
+
+	    <form ng-keyup="$event.keyCode == 13 && submit()" ng-controller="LoginController" id="myLogin">
+			<input type="text" name="username" id="username" ng-model="username" placeholder= "Username">
+			<input type="password" name="password" id="password" ng-model="password" placeholder = "Password"><br>
+			<button type="button" ng-click="submit()" autofocus>Sign in</button> 
+		</form>
+	  </div>
+	</section>
+</div>

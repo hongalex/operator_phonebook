@@ -1,0 +1,19 @@
+{
+  "name": "usc_operator",
+  "version": "0.0.1",
+  "authors": [
+    "<hongalex@usc.edu>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "elasticsearch": "~2.1.0",
+    "ng-focus-if": "^1.0.7"
+  }
+}
