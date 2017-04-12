@@ -95,7 +95,7 @@ h1 {
 	font: normal 400 36px/120% proxima-nova, sans-serif;
 	font-size: 3.6rem;
 	color: #989056;
-	text-shadow: 1px 1px rgb(255,255,255, 1);
+	/*text-shadow: 1px 1px rgb(255,255,255, 1);*/
 
 }
 
@@ -103,7 +103,7 @@ h2, h3, h4, h5, h6 {
 	font: normal bold 15px/120% proxima-nova, sans-serif;
 	font-weight: normal;
 	color: #CCCCCC;
-	text-shadow: 1px 1px rgb(255,255,255, 1);
+	/*text-shadow: 1px 1px rgb(255,255,255, 1);*/
 }
 
 a {
